@@ -14,20 +14,44 @@
 
         body {
             min-height: 100vh;
-            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
-            background-size: 400% 400%;
-            animation: gradient 15s ease infinite;
+            background: linear-gradient(
+                -45deg, 
+                #ee7752, 
+                #e73c7e, 
+                #23a6d5, 
+                #23d5ab,
+                #9b59b6,
+                #3498db,
+                #2ecc71,
+                #f1c40f
+            );
+            background-size: 500% 500%;
+            animation: gradient 20s ease infinite;
             display: flex;
             flex-direction: column;
+            justify-content: center;
             align-items: center;
-            padding: 50px 20px;
+            min-height: 100vh;
+            padding: 0;
             overflow-x: hidden;
         }
 
         @keyframes gradient {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+            0% {
+                background-position: 0% 50%;
+            }
+            25% {
+                background-position: 50% 100%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            75% {
+                background-position: 50% 0%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
         }
 
         /* 閃亮粒子效果 */
@@ -79,19 +103,20 @@
 
         .app-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
             max-width: 1400px;
             width: 100%;
             padding: 20px;
             position: relative;
             z-index: 1;
+            margin-top: 20px;
         }
 
         .app-card {
             background: rgba(255, 255, 255, 0.95);
             border-radius: 30px;
-            padding: 40px;
+            padding: 25px;
             text-align: center;
             transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
@@ -100,10 +125,11 @@
             flex-direction: column;
             align-items: center;
             justify-content: space-between;
-            min-height: 380px;
+            min-height: 320px;
             transform-style: preserve-3d;
             perspective: 1000px;
             position: relative;
+            overflow: hidden;
         }
 
         .app-card::before {
@@ -116,9 +142,10 @@
             background: linear-gradient(to right, #00b894, #00cec9);
             transform: scaleX(0);
             transform-origin: left;
-            transition: transform 0.3s ease;
-            border-radius: 4px;
-            display: block;
+            transition: transform 1.2s cubic-bezier(0.645, 0.045, 0.355, 1);
+            border-top-left-radius: 30px;
+            border-top-right-radius: 30px;
+            z-index: 2;
         }
 
         .app-card:hover::before {
@@ -131,7 +158,7 @@
         }
 
         .app-icon {
-            font-size: 4em;
+            font-size: 3em;
             margin-bottom: 25px;
             color: #2d3436;
             transition: all 0.3s ease;
@@ -148,7 +175,7 @@
         }
 
         .app-title {
-            font-size: 1.8em;
+            font-size: 1.5em;
             color: #2d3436;
             margin-bottom: 20px;
             font-weight: 700;
@@ -164,7 +191,7 @@
             color: #636e72;
             margin-bottom: 30px;
             line-height: 1.8;
-            font-size: 1.1em;
+            font-size: 1em;
             transition: all 0.3s ease;
         }
 
@@ -176,12 +203,12 @@
             background: linear-gradient(45deg, #00b894, #00cec9);
             color: white;
             text-decoration: none;
-            padding: 15px 40px;
+            padding: 12px 30px;
             border-radius: 30px;
             font-weight: 500;
             letter-spacing: 2px;
             transition: all 0.4s ease;
-            font-size: 1.1em;
+            font-size: 1em;
             position: relative;
             overflow: hidden;
         }
@@ -211,18 +238,16 @@
             left: 100%;
         }
 
+        @media (max-width: 1200px) {
+            .app-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
         @media (max-width: 768px) {
             .app-grid {
                 grid-template-columns: 1fr;
                 max-width: 400px;
-            }
-
-            h1 {
-                font-size: 2.5em;
-            }
-
-            .app-card {
-                min-height: 320px;
             }
         }
 
@@ -234,22 +259,14 @@
             flex-direction: column;
             align-items: center;
             justify-content: space-between;
+            position: relative;
+            z-index: 1;
         }
 
         /* 修改懸浮效果 */
         .app-card:hover::before,
         .app-card:hover::after {
-            opacity: 1;
-            animation: borderRotate 4s linear infinite, glowPulse 2s ease-in-out infinite;
-        }
-
-        @keyframes glowPulse {
-            0%, 100% {
-                filter: blur(20px) brightness(1);
-            }
-            50% {
-                filter: blur(25px) brightness(1.2);
-            }
+            animation: none;
         }
     </style>
 </head>
@@ -264,7 +281,7 @@
                 <div>
                     <div class="app-icon">🧮</div>
                     <h2 class="app-title">計算機</h2>
-                    <p class="app-description">功能完整的網頁計算機，支援基本運算和歷史記錄功能。</p>
+                    <p class="app-description">功能完整的網頁計算機，支援基本運算歷史記錄功能。</p>
                 </div>
                 <a href="Calculator.html" class="app-link">開啟應用</a>
             </div>
@@ -305,7 +322,7 @@
     </div>
 
     <script>
-        // 創建閃亮粒子
+        // 創建亮粒子
         function createParticles() {
             const particlesContainer = document.getElementById('particles');
             const particleCount = 50;
